@@ -9,6 +9,9 @@ const snakeBody = [{ x: 10, y: 5 }];
 let newSegments = 0;
 
 export function update() {
+
+    addSegments()
+
   const inputDirection = getInputDirection();
 
   for (let i = snakeBody.length - 2; i >= 0; i--) {
@@ -34,6 +37,13 @@ export function draw(gameBoard) {
 
 
 
+function addSegments() {
+    for (let i =0; i < newSegments; i++) {
+        snakeBody[snakeBody.length] = {...snakeBody[snakeBody.length - 1]}
+    }
+
+    newSegments = 0;
+}
 
 
 export function expandSnake(amount) {
