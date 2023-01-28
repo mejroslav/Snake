@@ -7,7 +7,10 @@
 body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: white;
+    display: flex;
 }
+
+
 
 .container-btn {
     margin: 20px 20px;
@@ -15,7 +18,7 @@ body {
 }
 
 button {
-    width: 200px;
+    width: 250px;
     height: 100px;
     color: white;
     font-size: 2.5rem;
@@ -38,6 +41,21 @@ button {
     background-color: hsl(30, 100%, 80%);
 }
 
+#continue-btn {
+    background-color: hsl(90, 100%, 50%);
+}
+
+#continue-btn:hover{
+    background-color: hsl(90, 100%, 80%);
+}
+
+#restart-btn {
+    background-color: hsl(0, 100%, 50%);
+}
+
+#restart-btn:hover{
+    background-color: hsl(0, 100%, 80%);
+}
 
 .game-wrapper {
     height: 100vmin;
@@ -75,8 +93,6 @@ button {
     background-color: hsl(50, 100%, 50%);
     border: .25vmin solid black;
 }
-
-
 
 .hide {
     display: none;

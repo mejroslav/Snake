@@ -7,20 +7,22 @@
     <title>Snake Game</title>
     <link rel="stylesheet" href="style.css" />
     <script src="game.js" defer type="module"></script>
-  </head>
-  <body>
+</head>
+<body>
       <div class="game-wrapper">
-          <div class="game-info">
-              <h1>Snake</h1>
-              <div class="button-container">
-                <button id="start-btn">START</button>
-                <button id="pause-btn" class="hide">PAUSE</button>
-              </div>
-              <div id="statistics">
-                <div id="game-started"></div>
-                <div id="info-speed"></div>
-                <div id="game-over" class="hide">Game Over!</div>
-              </div>
+            <div class="game-info">
+                <h1>Snake</h1>
+                <div class="button-container">
+                  <button id="start-btn">START</button>
+                  <button id="pause-btn" class="hide">PAUSE</button>
+                  <button id="continue-btn" class="hide">CONTINUE</button>
+                  <button id="restart-btn" class="hide">RESTART</button>
+                </div>
+                <div id="statistics">
+                  <div id="game-started">gameActive:</div>
+                  <div id="info-speed">snake speed:</div>
+                  <div id="game-over" class="hide">Game Over!</div>
+                </div>
           </div>
       <div id="game-board"></div>
     </div>

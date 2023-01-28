@@ -1,5 +1,5 @@
 import { getInputDirection } from "./input.js";
-import { GRID_SIZE, randomGridPosition, randomSnakePosition} from "./grid.js";
+import { GRID_SIZE, randomSnakePosition} from "./grid.js";
 
 
 // SNAKE BODY

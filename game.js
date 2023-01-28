@@ -13,7 +13,8 @@ export let gameOver = false;
 const gameBoard = document.getElementById("game-board");
 const startButtonElement = document.getElementById("start-btn");
 const pauseButtonElement = document.getElementById("pause-btn");
-
+const continueButtonElement = document.getElementById("continue-btn");
+const restartButtonElement = document.getElementById("restart-btn")
 main();
 
 function main() {
@@ -21,6 +22,8 @@ function main() {
 
   startButtonElement.addEventListener("click", startNewGame);
   pauseButtonElement.addEventListener("click", pauseGame);
+  continueButtonElement.addEventListener("click", continueGame);
+  restartButtonElement.addEventListener("click", () => {window.location = "/"})
 }
 
 function startNewGame() {
@@ -32,12 +35,28 @@ function startNewGame() {
   pauseButtonElement.classList.remove("hide");
 }
 
+function continueGame() {
+  gameActive = true;
+  window.requestAnimationFrame(game);
+
+  pauseButtonElement.classList.remove("hide");
+  continueButtonElement.classList.add("hide");
+}
+
 function pauseGame() {
   gameActive = false;
   updateStatistics();
 
-  startButtonElement.classList.remove("hide");
+  continueButtonElement.classList.remove("hide");
   pauseButtonElement.classList.add("hide");
+}
+
+function endGame() {
+  getGameOverInfo()
+  gameActive = false;
+  updateStatistics();
+  pauseButtonElement.classList.add("hide");
+  restartButtonElement.classList.remove("hide");
 }
 
 function game(currentTime) {
@@ -45,10 +64,7 @@ function game(currentTime) {
   checkDeath();
   updateStatistics();
 
-  if (gameOver) {
-    getGameOverInfo()
-    pauseGame()
-  }
+  if (gameOver) endGame()
 
   // the old way: gameOver alert
   // if (gameOver) {

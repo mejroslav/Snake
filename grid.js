@@ -1,5 +1,5 @@
 export const GRID_SIZE = 21;
-const NEAR_EDGE = 4;
+const NEAR_EDGE = 6;
 
 /**
  * Returns a random grid position.
@@ -23,24 +23,3 @@ export function randomSnakePosition() {
   };
 }
 
-export function randomDirection() {
-  let x_direction = 0;
-  let y_direction = 0;
-
-  while (true) {
-    x_direction = Math.floor(Math.random() * 2) - 1;
-    y_direction = Math.floor(Math.random() * 2) - 1;
-
-    if (
-      (x_direction !== 0 && y_direction === 0) ||
-      (x_direction === 0 && y_direction !== 0)
-    ) {
-      break;
-    }
-  }
-
-  return {
-    x: x_direction,
-    y: y_direction,
-  };
-}
