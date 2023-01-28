@@ -3,7 +3,7 @@ import { update as updateSnake, draw as drawSnake } from "./snake.js";
 import { getSnakeHead, snakeIntersection } from "./snake.js";
 import { update as updateFood, draw as drawFood } from "./food.js";
 import { outsideGrid } from "./snake.js";
-import { updateStatistics } from "./statistics.js";
+import { updateStatistics } from "./settings.js";
 
 let lastRenderTime = 0;
 
@@ -11,20 +11,39 @@ export let gameActive = false;
 export let gameOver = false;
 
 const gameBoard = document.getElementById("game-board");
+const startButtonElement = document.getElementById("start-btn");
+const pauseButtonElement = document.getElementById("pause-btn");
 
 main();
 
 function main() {
+  startButtonElement.addEventListener("click", startNewGame);
+  pauseButtonElement.addEventListener("click", pauseGame);
+}
+
+function startNewGame() {
+  gameActive = true;
+  
   window.requestAnimationFrame(game);
+  
+  startButtonElement.classList.add("hide");
+  pauseButtonElement.classList.remove("hide");
+}
+
+function pauseGame() {
+  gameActive = false;
+  updateStatistics();
+
+  startButtonElement.classList.remove("hide");
+  pauseButtonElement.classList.add("hide");
 }
 
 function game(currentTime) {
-  gameActive = true;
+  if (!gameActive) return
   checkDeath();
-  updateStatistics(); // TODO: this should be in if(gameOver) statement?
+  updateStatistics();
 
   if (gameOver) {
-
     if (confirm("You lost. Press OK to start.")) {
       gameActive = false;
       window.location = "/"; // refresh page -> start new game

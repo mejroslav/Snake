@@ -1,12 +1,6 @@
-let inputDirection = {
-  x: 0,
-  y: 0,
-};
+let inputDirection = { x: 0, y: 0 };
 
-let lastInputDirection = {
-  x: 0,
-  y: 0,
-};
+let lastInputDirection = { x: 0, y: 0 };
 
 window.addEventListener("keydown", (e) => {
   switch (e.key) {
@@ -27,7 +21,7 @@ window.addEventListener("keydown", (e) => {
       inputDirection = { x: +1, y: 0 };
       break;
     case "Escape":
-      inputDirection = {x: 0, y:0};
+      inputDirection = { x: 0, y: 0 };
       break;
   }
 });

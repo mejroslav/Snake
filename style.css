@@ -9,6 +9,34 @@ body {
     color: white;
 }
 
+.container-btn {
+    margin: 20px 20px;
+    display: flex;
+}
+
+button {
+    width: 200px;
+    height: 100px;
+    color: white;
+    font-size: 2.5rem;
+    border: 0;
+    border-radius: 10px;
+}
+
+#start-btn {
+    background-color: hsl(200, 100%, 50%);
+}
+#start-btn:hover{
+    background-color: hsl(200, 100%, 80%);
+}
+
+#pause-btn {
+    background-color: hsl(30, 100%, 50%);
+
+}
+#pause-btn:hover{
+    background-color: hsl(30, 100%, 80%);
+}
 
 
 .game-wrapper {
@@ -27,6 +55,7 @@ body {
 }
 
 #game-board {
+    flex-shrink: 0;
     background-color: #ccc;
     width: 100vmin;
     height: 100vmin;
@@ -45,6 +74,12 @@ body {
 .food {
     background-color: hsl(50, 100%, 50%);
     border: .25vmin solid black;
+}
+
+
+
+.hide {
+    display: none;
 }
 
 .nic {
