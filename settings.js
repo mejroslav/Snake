@@ -6,7 +6,10 @@ const gameStartedElement = document.getElementById("game-started");
 const infoSpeedElement = document.getElementById("info-speed");
 
 export function updateStatistics() {
-  gameOverElement.innerText = `gameOver: ${gameOver}`;
   gameStartedElement.innerText = `gameActive: ${gameActive}`;
   infoSpeedElement.innerText = `snake speed: ${SNAKE_SPEED}`;
+}
+
+export function getGameOverInfo() {
+  gameOverElement.classList.remove("hide");
 }

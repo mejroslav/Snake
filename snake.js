@@ -7,7 +7,7 @@ export const SNAKE_SPEED = 10;
 const snakeBody = [randomSnakePosition()];
 let newSegments = 0;
 
-export function update() {
+export function updateSnake() {
   addSegments();
   const inputDirection = getInputDirection();
   for (let i = snakeBody.length - 2; i >= 0; i--) {
