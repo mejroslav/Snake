@@ -18,3 +18,5 @@ export function draw(gameBoard) {
   foodElement.classList.add("food");
   gameBoard.appendChild(foodElement);
 }
+
+function addSegments()
