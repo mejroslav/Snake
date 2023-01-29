@@ -9,8 +9,9 @@ import { randomGridPosition } from "./grid.js";
 let food = getRandomFoodPosition();
 let barrierSegment = [];
 let barrierCreatorNumber = 0;
-
+export let gameScore = 0;
 const EXPANSION_RATE = 1;
+const scoreElement = document.getElementById("game-score");
 
 /**
  * Whenever snake eats food, expand snake and generate next food on position which does not interfere with snake.
@@ -18,6 +19,8 @@ const EXPANSION_RATE = 1;
 export function updateFood() {
   if (onSnake(food)) {
     expandSnake(EXPANSION_RATE);
+    gameScore += 10;
+    console.log(gameScore)
     food = getRandomFoodPosition();
     increaseSpeed();
   }
@@ -26,13 +29,20 @@ export function updateFood() {
 export function updateBarrier() {
   if (onSnake(food)) {
     if (barrierCreatorNumber % 3 === 0) {
-      barrierSegment.push(randomGridPosition());
+      barrierSegment.push(getRandomBarrierPosition());
       console.log(barrierSegment);
     }
     barrierCreatorNumber++;
     console.log(barrierCreatorNumber);
   }
 }
+
+
+export function updateStatistics() {
+    // gameStartedElement.innerText = `gameActive: ${gameActive}`;
+    // infoSpeedElement.innerText = `snake speed: ${snakeSpeed}`;
+    scoreElement.innerText = `Skóre: ${gameScore}`;
+  }
 
 /**
  * Draw a new square with food.
@@ -58,7 +68,7 @@ export function drawBarrier(gameBoard) {
 
 function getRandomFoodPosition() {
   let newFoodPosition;
-  while (newFoodPosition == null || onSnake(newFoodPosition)) {
+  while (newFoodPosition == null || onSnake(newFoodPosition) ) {
     newFoodPosition = randomGridPosition();
   }
   return newFoodPosition;
@@ -81,9 +91,8 @@ function onFood(position) {
   return equalPositions(food, position);
 }
 
-function onBarrier(position) {
-  return barrierSegment.some((segment, index) => {
-    if (ignoreHead && index === 0) return false;
-    return equalPositions(segment, position);
-  });
+export function barrierCollision(position) {
+    return barrierSegment.some((segment) => {
+        return equalPositions(segment, position);
+      });
 }

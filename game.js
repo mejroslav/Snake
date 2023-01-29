@@ -1,9 +1,16 @@
 import { snakeSpeed } from "./snake.js";
 import { updateSnake as updateSnake, draw as drawSnake } from "./snake.js";
 import { getSnakeHead, snakeIntersection } from "./snake.js";
-import { updateFood, drawFood, drawBarrier, updateBarrier} from "./food.js";
+import {
+  updateFood,
+  drawFood,
+  drawBarrier,
+  updateBarrier,
+  barrierCollision,
+  updateStatistics,
+} from "./food.js";
 import { outsideGrid } from "./snake.js";
-import { getGameOverInfo, updateStatistics } from "./settings.js";
+import { getGameOverInfo } from "./settings.js";
 
 let lastRenderTime = 0;
 
@@ -14,23 +21,32 @@ const gameBoard = document.getElementById("game-board");
 const startButtonElement = document.getElementById("start-btn");
 const pauseButtonElement = document.getElementById("pause-btn");
 const continueButtonElement = document.getElementById("continue-btn");
-const restartButtonElement = document.getElementById("restart-btn")
+const restartButtonElement = document.getElementById("restart-btn");
 main();
 
 function main() {
   updateStatistics();
 
+  window.addEventListener("keydown", (e) => {
+    switch (e.key) {
+      case "Enter":
+        startNewGame();
+        break;
+    }
+  })
+
   startButtonElement.addEventListener("click", startNewGame);
   pauseButtonElement.addEventListener("click", pauseGame);
   continueButtonElement.addEventListener("click", continueGame);
-  restartButtonElement.addEventListener("click", () => {window.location = "/"})
+  restartButtonElement.addEventListener("click", () => {
+    window.location = "/";
+  });
 }
 
 function startNewGame() {
   gameActive = true;
-  
   window.requestAnimationFrame(game);
-  
+
   startButtonElement.classList.add("hide");
   pauseButtonElement.classList.remove("hide");
 }
@@ -52,7 +68,7 @@ function pauseGame() {
 }
 
 function endGame() {
-  getGameOverInfo()
+  getGameOverInfo();
   gameActive = false;
   updateStatistics();
   pauseButtonElement.classList.add("hide");
@@ -60,11 +76,11 @@ function endGame() {
 }
 
 function game(currentTime) {
-  if (!gameActive) return
+  if (!gameActive) return;
   checkDeath();
   updateStatistics();
 
-  if (gameOver) endGame()
+  if (gameOver) endGame();
 
   // the old way: gameOver alert
   // if (gameOver) {
@@ -101,7 +117,9 @@ function draw() {
   drawBarrier(gameBoard);
 }
 
-
 function checkDeath() {
-  gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
+  gameOver =
+    outsideGrid(getSnakeHead()) ||
+    snakeIntersection() ||
+    barrierCollision(getSnakeHead());
 }
