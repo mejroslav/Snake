@@ -1,9 +1,8 @@
 import { getInputDirection } from "./input.js";
 import { GRID_SIZE, randomSnakePosition} from "./grid.js";
 
-
 // SNAKE BODY
-export const SNAKE_SPEED = 10;
+export let snakeSpeed = 6;
 const snakeBody = [randomSnakePosition()];
 let newSegments = 0;
 
@@ -57,7 +56,7 @@ export function snakeIntersection() {
   return onSnake(snakeBody[0], { ignoreHead: true });
 }
 
-function equalPositions(pos1, pos2) {
+export function equalPositions(pos1, pos2) {
   return pos1.x === pos2.x && pos1.y === pos2.y;
 }
 
@@ -68,4 +67,8 @@ export function outsideGrid(position) {
     position.y < 1 ||
     position.y > GRID_SIZE
   );
+}
+
+export function increaseSpeed() {
+    snakeSpeed += 0.25
 }

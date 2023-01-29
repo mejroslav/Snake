@@ -1,7 +1,7 @@
-import { SNAKE_SPEED } from "./snake.js";
+import { snakeSpeed } from "./snake.js";
 import { updateSnake as updateSnake, draw as drawSnake } from "./snake.js";
 import { getSnakeHead, snakeIntersection } from "./snake.js";
-import { updateFood as updateFood, drawFood as drawFood } from "./food.js";
+import { updateFood, drawFood, drawBarrier, updateBarrier} from "./food.js";
 import { outsideGrid } from "./snake.js";
 import { getGameOverInfo, updateStatistics } from "./settings.js";
 
@@ -79,7 +79,7 @@ function game(currentTime) {
   // currentTime
   window.requestAnimationFrame(game);
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-  if (secondsSinceLastRender < 1 / SNAKE_SPEED) return;
+  if (secondsSinceLastRender < 1 / snakeSpeed) return;
   lastRenderTime = currentTime;
   update();
   draw();
@@ -90,6 +90,7 @@ function game(currentTime) {
  */
 function update() {
   updateSnake();
+  updateBarrier();
   updateFood();
 }
 
@@ -97,6 +98,7 @@ function draw() {
   gameBoard.innerHTML = "";
   drawSnake(gameBoard);
   drawFood(gameBoard);
+  drawBarrier(gameBoard);
 }
 
 
