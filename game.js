@@ -14,6 +14,7 @@ import { getGameOverInfo } from "./settings.js";
 
 let lastRenderTime = 0;
 
+export let gameStarted = false;
 export let gameActive = false;
 export let gameOver = false;
 
@@ -30,7 +31,11 @@ function main() {
   window.addEventListener("keydown", (e) => {
     switch (e.key) {
       case "Enter":
-        startNewGame();
+        if (!gameStarted) startNewGame();
+        else continueGame();
+        break;
+      case "Escape":
+        pauseGame();
         break;
     }
   })
@@ -44,6 +49,7 @@ function main() {
 }
 
 function startNewGame() {
+  gameStarted = true;
   gameActive = true;
   window.requestAnimationFrame(game);
 
@@ -79,17 +85,7 @@ function game(currentTime) {
   if (!gameActive) return;
   checkDeath();
   updateStatistics();
-
   if (gameOver) endGame();
-
-  // the old way: gameOver alert
-  // if (gameOver) {
-  //   if (confirm("You lost. Press OK to start.")) {
-  //     gameActive = false;
-  //     window.location = "/"; // refresh page -> start new game
-  //   }
-  //   return;
-  // }
 
   // OK browser, tell me when i should render next frame to animate my game
   // currentTime

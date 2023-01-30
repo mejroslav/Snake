@@ -1,112 +1,127 @@
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap");
 
 body {
-    color: white;
-    display: flex;
-    font-family: 'Manrope', sans-serif;
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 26px;
 }
 
 .container-btn {
-    margin: 20px 20px;
-    display: flex;
+  margin: 20px 20px;
+  display: flex;
 }
 
 button {
-    width: 250px;
-    height: 100px;
-    color: white;
-    font-size: 2.5rem;
-    border: 0;
-    border-radius: 16px;
+  width: 250px;
+  height: 100px;
+  color: white;
+  font-size: 2.5rem;
+  border: 0;
+  border-radius: 16px;
 }
 
 #start-btn {
-    background-color: hsl(200, 100%, 50%);
+  background-color: hsl(200, 100%, 50%);
 }
-#start-btn:hover{
-    background-color: hsl(200, 100%, 80%);
+#start-btn:hover {
+  background-color: hsl(200, 100%, 80%);
 }
 
 #pause-btn {
-    background-color: hsl(30, 100%, 50%);
-
+  background-color: hsl(30, 100%, 50%);
 }
-#pause-btn:hover{
-    background-color: hsl(30, 100%, 80%);
+#pause-btn:hover {
+  background-color: hsl(30, 100%, 80%);
 }
 
 #continue-btn {
-    background-color: hsl(90, 100%, 50%);
+  background-color: hsl(90, 100%, 50%);
 }
 
-#continue-btn:hover{
-    background-color: hsl(90, 100%, 80%);
+#continue-btn:hover {
+  background-color: hsl(90, 100%, 80%);
 }
 
 #restart-btn {
-    background-color: hsl(0, 100%, 50%);
+  background-color: hsl(0, 100%, 50%);
 }
 
-#restart-btn:hover{
-    background-color: hsl(0, 100%, 80%);
+#restart-btn:hover {
+  background-color: hsl(0, 100%, 80%);
+}
+
+.info-wrapper {
+  margin: 0px 40px;
+  height: 100vh;
+  flex-basis: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.game-info h1{
+  font-size: 6rem;
 }
 
 .game-wrapper {
-    height: 100vmin;
-    width: 100vw;
+  flex-basis: 800px;
+  flex-shrink: 1;
 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: black;
-}
-
-.game-info {
-    font-size: 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
 }
 
 #game-board {
-    flex-shrink: 0;
-    background-color: #ccc;
-    width: 100vmin;
-    height: 100vmin;
+  flex-shrink: 0;
+  background-color: #ccc;
+  width: 100vmin;
+  height: 100vmin;
 
-    display: grid;
-    /* vygeneruje 21x21 mřížku o 1framu */
-    grid-template-rows: repeat(21, 1fr);
-    grid-template-columns: repeat(21, 1fr);
+  display: grid;
+  /* vygeneruje 21x21 mřížku o 1framu */
+  grid-template-rows: repeat(21, 1fr);
+  grid-template-columns: repeat(21, 1fr);
 }
 
 .snake {
-    background-color: hsl(200, 100%, 50%);
-    border: .25vmin solid black;
+  background-color: hsl(200, 100%, 50%);
+  border: 0.25vmin solid black;
 }
 
 .food {
-    background-color: hsl(50, 100%, 50%);
-    border: .25vmin solid black;
+  background-color: hsl(50, 100%, 50%);
+  border: 0.25vmin solid black;
 }
 
 .barrier {
-    background-color: hsl(0, 0%, 0%);
-    border: .25vmin solid black;
+  background-color: hsl(0, 0%, 0%);
+  border: 0.25vmin solid black;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .nic {
-    color: hsl(0, 100%, 50%);
-    color: hsl(240, 100%, 50%);
-    color: hsl(120, 100%, 25%);
-    color: hsl(60, 100%, 50%);
-    color: hsl(300, 76%, 72%);
-    color: hsl(0, 59%, 41%);
+  color: hsl(0, 100%, 50%);
+  color: hsl(240, 100%, 50%);
+  color: hsl(120, 100%, 25%);
+  color: hsl(60, 100%, 50%);
+  color: hsl(300, 76%, 72%);
+  color: hsl(0, 59%, 41%);
 }
