@@ -3,6 +3,7 @@ import {
   expandSnake,
   increaseSpeed,
   equalPositions,
+  snakeSpeed,
 } from "./snake.js";
 import { randomGridPosition } from "./grid.js";
 
@@ -13,6 +14,9 @@ export let gameScore = 0;
 const EXPANSION_RATE = 1;
 const scoreElement = document.getElementById("game-score");
 
+
+const gameSpeedElement = document.getElementById("game-speed");
+
 /**
  * Whenever snake eats food, expand snake and generate next food on position which does not interfere with snake.
  */
@@ -20,7 +24,7 @@ export function updateFood() {
   if (onSnake(food)) {
     expandSnake(EXPANSION_RATE);
     gameScore += 10;
-    console.log(gameScore)
+    console.log(gameScore);
     food = getRandomFoodPosition();
     increaseSpeed();
   }
@@ -37,12 +41,11 @@ export function updateBarrier() {
   }
 }
 
-
 export function updateStatistics() {
-    // gameStartedElement.innerText = `gameActive: ${gameActive}`;
-    // infoSpeedElement.innerText = `snake speed: ${snakeSpeed}`;
-    scoreElement.innerText = `Skóre: ${gameScore}`;
-  }
+  // gameStartedElement.innerText = `gameActive: ${gameActive}`;
+  gameSpeedElement.innerText = `Speed: ${snakeSpeed}`;
+  scoreElement.innerText = `Score: ${gameScore}`;
+}
 
 /**
  * Draw a new square with food.
@@ -68,7 +71,7 @@ export function drawBarrier(gameBoard) {
 
 function getRandomFoodPosition() {
   let newFoodPosition;
-  while (newFoodPosition == null || onSnake(newFoodPosition) ) {
+  while (newFoodPosition == null || onSnake(newFoodPosition)) {
     newFoodPosition = randomGridPosition();
   }
   return newFoodPosition;
@@ -92,7 +95,7 @@ function onFood(position) {
 }
 
 export function barrierCollision(position) {
-    return barrierSegment.some((segment) => {
-        return equalPositions(segment, position);
-      });
+  return barrierSegment.some((segment) => {
+    return equalPositions(segment, position);
+  });
 }

@@ -23,6 +23,7 @@ const startButtonElement = document.getElementById("start-btn");
 const pauseButtonElement = document.getElementById("pause-btn");
 const continueButtonElement = document.getElementById("continue-btn");
 const restartButtonElement = document.getElementById("restart-btn");
+
 main();
 
 function main() {
