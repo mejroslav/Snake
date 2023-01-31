@@ -29,7 +29,9 @@ export function updateFood() {
     increaseSpeed();
   }
 }
-
+/**
+ * Whenever snake eats food, increment barrierCreatorNumber. Every three times create a new barrier.
+ */
 export function updateBarrier() {
   if (onSnake(food)) {
     if (barrierCreatorNumber % 3 === 0) {
@@ -41,6 +43,9 @@ export function updateBarrier() {
   }
 }
 
+/**
+ * Update statistics about snake speed and player score.
+ */
 export function updateStatistics() {
   // gameStartedElement.innerText = `gameActive: ${gameActive}`;
   gameSpeedElement.innerText = `Speed: ${snakeSpeed}`;
@@ -49,7 +54,6 @@ export function updateStatistics() {
 
 /**
  * Draw a new square with food.
- * @param {*} gameBoard
  */
 export function drawFood(gameBoard) {
   const foodElement = document.createElement("div");
@@ -59,6 +63,9 @@ export function drawFood(gameBoard) {
   gameBoard.appendChild(foodElement);
 }
 
+/**
+ * Draw a new barrier.
+ */
 export function drawBarrier(gameBoard) {
   barrierSegment.forEach((segment) => {
     const barrierElement = document.createElement("div");
@@ -69,6 +76,10 @@ export function drawBarrier(gameBoard) {
   });
 }
 
+/**
+ * Return new food position that does not interfere with snake or barrier.
+ * TODO: fix collision with barriers.
+ */
 function getRandomFoodPosition() {
   let newFoodPosition;
   while (newFoodPosition == null || onSnake(newFoodPosition)) {
@@ -77,6 +88,9 @@ function getRandomFoodPosition() {
   return newFoodPosition;
 }
 
+/**
+ * Return a new barrier position that does not interfere with snake or food.
+ */
 function getRandomBarrierPosition() {
   let newBarrierPosition;
   while (
@@ -90,6 +104,9 @@ function getRandomBarrierPosition() {
   return newBarrierPosition;
 }
 
+/**
+ * Return true if food is on given position.
+ */
 function onFood(position) {
   return equalPositions(food, position);
 }

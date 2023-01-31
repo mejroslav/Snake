@@ -1,5 +1,5 @@
 import { snakeSpeed } from "./snake.js";
-import { updateSnake as updateSnake, draw as drawSnake } from "./snake.js";
+import { updateSnake as updateSnake, drawSnake as drawSnake } from "./snake.js";
 import { getSnakeHead, snakeIntersection } from "./snake.js";
 import {
   updateFood,
@@ -27,6 +27,9 @@ const introScreen = document.getElementById("intro-screen");
 
 main();
 
+/**
+ * The main function. Adds listeners to all buttons.
+ */
 function main() {
   updateStatistics();
 
@@ -50,6 +53,9 @@ function main() {
   });
 }
 
+/**
+ * Start new game. Replace the start button with pause button.
+ */
 function startNewGame() {
   gameStarted = true;
   gameActive = true;
@@ -59,6 +65,9 @@ function startNewGame() {
   pauseButtonElement.classList.remove("hide");
 }
 
+/**
+ * Continue the game. Replace continue button with pause button.
+ */
 function continueGame() {
   gameActive = true;
   window.requestAnimationFrame(game);
@@ -67,6 +76,9 @@ function continueGame() {
   continueButtonElement.classList.add("hide");
 }
 
+/**
+ * Pause the game. Replace the pause button with continue button.
+ */
 function pauseGame() {
   gameActive = false;
   updateStatistics();
@@ -75,6 +87,9 @@ function pauseGame() {
   pauseButtonElement.classList.add("hide");
 }
 
+/**
+ * End game. Show game over info, replace pause button with restart button.
+ */
 function endGame() {
   getGameOverInfo();
   gameActive = false;
@@ -83,6 +98,10 @@ function endGame() {
   restartButtonElement.classList.remove("hide");
 }
 
+/**
+ * Run the game. Depending on snakeSpeed, update position and render it. Check for death and if the game is over, show endgame message.
+ * @param {*} currentTime
+ */
 function game(currentTime) {
   if (!gameActive) return;
 
@@ -92,14 +111,14 @@ function game(currentTime) {
   lastRenderTime = currentTime;
 
   update();
-  draw();
   checkDeath();
   if (gameOver) endGame();
+  else draw();
   updateStatistics();
 }
 
 /**
- * Update snake and food positions.
+ * Update snake, food and barrier positions.
  */
 function update() {
   updateSnake();
@@ -107,6 +126,9 @@ function update() {
   updateFood();
 }
 
+/**
+ * Render snake, food and barrier.
+ */
 function draw() {
   gameBoard.innerHTML = "";
   drawSnake(gameBoard);
@@ -114,6 +136,9 @@ function draw() {
   drawBarrier(gameBoard);
 }
 
+/**
+ * Check if the snake is outside the grid, intersects himself or collides with barrier and update gameOver variable.
+ */
 function checkDeath() {
   gameOver =
     outsideGrid(getSnakeHead()) ||

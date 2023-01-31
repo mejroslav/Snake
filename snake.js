@@ -6,6 +6,10 @@ export let snakeSpeed = 6;
 const snakeBody = [randomSnakePosition()];
 let newSegments = 0;
 
+
+/**
+ * Update the snake position.
+ */
 export function updateSnake() {
   addSegments();
   const inputDirection = getInputDirection();
@@ -19,7 +23,10 @@ export function updateSnake() {
   snakeBody[0].y += inputDirection.y;
 }
 
-export function draw(gameBoard) {
+/**
+ * Draw snake elements.
+ */
+export function drawSnake(gameBoard) {
   snakeBody.forEach((segment) => {
     const snakeElement = document.createElement("div");
     snakeElement.style.gridColumnStart = segment.x;
@@ -29,6 +36,9 @@ export function draw(gameBoard) {
   });
 }
 
+/**
+ * Add new element to snakeBody.
+ */
 function addSegments() {
   for (let i = 0; i < newSegments; i++) {
     snakeBody[snakeBody.length] = { ...snakeBody[snakeBody.length - 1] };
@@ -37,10 +47,16 @@ function addSegments() {
   newSegments = 0;
 }
 
+/**
+ * Expand snake on given amount.
+ */
 export function expandSnake(amount) {
   newSegments += amount;
 }
 
+/**
+ * Return true if snake is on given position. Ignore his head if needed.
+ */
 export function onSnake(position, { ignoreHead = false } = {}) {
   return snakeBody.some((segment, index) => {
     if (ignoreHead && index === 0) return false;
@@ -60,6 +76,9 @@ export function equalPositions(pos1, pos2) {
   return pos1.x === pos2.x && pos1.y === pos2.y;
 }
 
+/**
+ * Return true if the snake is outside the grid.
+ */
 export function outsideGrid(position) {
   return (
     position.x < 1 ||
