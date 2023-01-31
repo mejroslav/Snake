@@ -28,7 +28,6 @@ const introScreen = document.getElementById("intro-screen");
 main();
 
 function main() {
-
   updateStatistics();
 
   window.addEventListener("keydown", (e) => {
@@ -50,7 +49,6 @@ function main() {
     window.location = "/";
   });
 }
-
 
 function startNewGame() {
   gameStarted = true;
@@ -87,18 +85,17 @@ function endGame() {
 
 function game(currentTime) {
   if (!gameActive) return;
-  checkDeath();
-  updateStatistics();
-  if (gameOver) endGame();
 
-  // OK browser, tell me when i should render next frame to animate my game
-  // currentTime
   window.requestAnimationFrame(game);
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
   if (secondsSinceLastRender < 1 / snakeSpeed) return;
   lastRenderTime = currentTime;
+
   update();
   draw();
+  checkDeath();
+  if (gameOver) endGame();
+  updateStatistics();
 }
 
 /**
