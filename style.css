@@ -18,10 +18,6 @@ body {
   font-size: 26px;
 }
 
-.container-btn {
-  margin: 20px 20px;
-  display: flex;
-}
 
 button {
   width: 250px;
@@ -60,6 +56,24 @@ button {
 
 #restart-btn:hover {
   background-color: hsl(0, 100%, 80%);
+}
+
+
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .info-wrapper {
@@ -115,6 +129,11 @@ button {
 
 .hide {
   display: none;
+}
+
+.hide-screen{
+  visibility: hidden;
+  opacity: 0;
 }
 
 .nic {

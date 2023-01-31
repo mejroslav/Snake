@@ -23,10 +23,12 @@ const startButtonElement = document.getElementById("start-btn");
 const pauseButtonElement = document.getElementById("pause-btn");
 const continueButtonElement = document.getElementById("continue-btn");
 const restartButtonElement = document.getElementById("restart-btn");
+const introScreen = document.getElementById("intro-screen");
 
 main();
 
 function main() {
+
   updateStatistics();
 
   window.addEventListener("keydown", (e) => {
@@ -39,7 +41,7 @@ function main() {
         pauseGame();
         break;
     }
-  })
+  });
 
   startButtonElement.addEventListener("click", startNewGame);
   pauseButtonElement.addEventListener("click", pauseGame);
@@ -48,6 +50,7 @@ function main() {
     window.location = "/";
   });
 }
+
 
 function startNewGame() {
   gameStarted = true;
