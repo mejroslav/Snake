@@ -7,7 +7,7 @@ This game is written in pure JavaScript. It was inspired by 'WebDevSimplified'.
 ## Controls:
 
 | Key | Action |
----
+| -------- | --------------- |
 | Enter | Start the game. |
 | Arrows | Maneuver the snake. |
 | Escape | Pause the game. |
