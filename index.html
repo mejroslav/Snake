@@ -9,8 +9,6 @@
     <script src="game.js" defer type="module"></script>
   </head>
   <body>
-    
-
     <div class="info-wrapper">
       <div class="game-info">
         <h1>Snake</h1>
@@ -27,12 +25,15 @@
       <div id="statistics">
         <div id="game-started"></div>
         <div id="game-speed"></div>
-        <div id="game-over" class="hide">Game Over!</div>
         <div id="game-score">Score = 0</div>
       </div>
     </div>
     <div class="game-wrapper">
       <div id="game-board"></div>
+    </div>
+    <div id="game-over" class="hide-screen">
+      <div data-game-over-text>Game Over!</div>
+      <a href="#" class="close"></a>
     </div>
   </body>
 </html>

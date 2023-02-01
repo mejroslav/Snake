@@ -161,7 +161,6 @@ function draw() {
  * Check if the snake is outside the grid, intersects himself or collides with barrier and update gameOver variable.
  */
 function checkDeath() {
-  console.log(barrierSegment);
   gameOver =
     outsideGrid(getSnakeHead()) ||
     snakeIntersection() ||
@@ -182,7 +181,6 @@ function generateGrid(parentElement, number) {
     }
   }
   cells = document.querySelectorAll("[data-type='cell']");
-  console.log(cells);
 }
 
 function enablePaintMode() {

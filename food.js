@@ -24,7 +24,6 @@ export function updateFood() {
   if (onSnake(food)) {
     expandSnake(EXPANSION_RATE);
     gameScore += 10;
-    console.log(gameScore);
     food = getRandomFoodPosition();
     increaseSpeed();
   }
@@ -36,10 +35,8 @@ export function updateBarrier() {
   if (onSnake(food)) {
     if (barrierCreatorNumber % 3 === 0) {
       barrierSegment.push(getRandomBarrierPosition());
-      console.log(barrierSegment);
     }
     barrierCreatorNumber++;
-    console.log(barrierCreatorNumber);
   }
 }
 
@@ -94,7 +91,6 @@ function getRandomBarrierPosition() {
   ) {
     newBarrierPosition = randomGridPosition();
   }
-  console.log(newBarrierPosition);
   return newBarrierPosition;
 }
 
