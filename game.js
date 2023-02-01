@@ -189,7 +189,7 @@ function enablePaintMode() {
 
     cells.forEach((cell) => {
       cell.addEventListener("click", () => {
-        if (paintModeActive) paint(cell);
+        if (paintModeActive) addOrRemoveBarrier(cell);
       });
     });
 
@@ -205,12 +205,18 @@ function disablePaintMode() {
   gameModeButtonElement.classList.add("hide");
 }
 
-function paint(cell) {
+function addOrRemoveBarrier(cell) {
   if (cell.dataset.fill === "empty") {
     cell.dataset.fill = "barrier";
     const x = Number(cell.dataset.x)
     const y = Number(cell.dataset.y)
     barrierSegment.push({ x, y})
+  }
+  else if (cell.dataset.fill === "barrier") {
+    cell.dataset.fill = "empty";
+    const x = Number(cell.dataset.x)
+    const y = Number(cell.dataset.y)
+    barrierSegment.splice(barrierSegment.indexOf({x,y},1))
   }
 }
 
