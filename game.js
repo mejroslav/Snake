@@ -17,13 +17,19 @@ let lastRenderTime = 0;
 export let gameStarted = false;
 export let gameActive = false;
 export let gameOver = false;
+let paintModeActive = false;
 
 const gameBoard = document.getElementById("game-board");
 const startButtonElement = document.getElementById("start-btn");
 const pauseButtonElement = document.getElementById("pause-btn");
 const continueButtonElement = document.getElementById("continue-btn");
 const restartButtonElement = document.getElementById("restart-btn");
+
+const paintModeButtonElement = document.getElementById("paint-btn");
+const gameModeButtonElement = document.getElementById("game-btn");
+
 const introScreen = document.getElementById("intro-screen");
+let cells = document.querySelectorAll("[data-type='cell']");
 
 main();
 
@@ -31,6 +37,11 @@ main();
  * The main function. Adds listeners to all buttons.
  */
 function main() {
+  generateGrid(gameBoard, 21);
+
+  paintModeButtonElement.addEventListener("click", enablePaintMode);
+  gameModeButtonElement.addEventListener("click", disablePaintMode);
+
   updateStatistics();
 
   window.addEventListener("keydown", (e) => {
@@ -144,4 +155,45 @@ function checkDeath() {
     outsideGrid(getSnakeHead()) ||
     snakeIntersection() ||
     barrierCollision(getSnakeHead());
+}
+
+function generateGrid(parentElement, number) {
+  for (let column = 1; column <= number; column++) {
+    for (let row = 1; row <= number; row++) {
+      const cell = document.createElement("div");
+      cell.dataset.type = "cell";
+      cell.dataset.fill = "empty";
+      cell.dataset.x = column;
+      cell.dataset.y = row;
+      cell.style.gridColumnStart = column;
+      cell.style.gridRowStart = row;
+      parentElement.append(cell);
+    }
+  }
+  cells = document.querySelectorAll("[data-type='cell']");
+  console.log(cells);
+}
+
+function enablePaintMode() {
+  paintModeActive = true;
+    cells.forEach((cell) => {
+      cell.addEventListener("click", () => {
+        if (paintModeActive) paint(cell);
+      });
+    });
+
+  paintModeButtonElement.classList.add("hide");
+  gameModeButtonElement.classList.remove("hide");
+}
+
+function disablePaintMode() {
+  paintModeActive = false;
+
+  paintModeButtonElement.classList.remove("hide");
+  gameModeButtonElement.classList.add("hide");
+}
+
+function paint(cell) {
+  cell.classList.add("barrier");
+  cell.dataset.fill = "barrier";
 }

@@ -58,6 +58,19 @@ button {
   background-color: hsl(0, 100%, 80%);
 }
 
+#paint-btn {
+  background-color: hsl(160, 80%, 60%);
+}
+#paint-btn:hover {
+  background-color: hsl(160, 80%, 80%);
+}
+
+#game-btn {
+  background-color: hsl(160, 80%, 60%);
+}
+#game-btn:hover {
+  background-color: hsl(160, 80%, 80%);
+}
 
 #intro-screen {
   position: fixed;
