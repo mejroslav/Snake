@@ -8,6 +8,7 @@ import {
   updateBarrier,
   barrierCollision,
   updateStatistics,
+  barrierSegment,
 } from "./food.js";
 import { outsideGrid } from "./snake.js";
 import { getGameOverInfo } from "./settings.js";
@@ -141,7 +142,8 @@ function update() {
  * Render snake, food and barrier.
  */
 function draw() {
-  gameBoard.innerHTML = "";
+  // gameBoard.innerHTML = "";
+  clearGrid();
   drawSnake(gameBoard);
   drawFood(gameBoard);
   drawBarrier(gameBoard);
@@ -151,6 +153,7 @@ function draw() {
  * Check if the snake is outside the grid, intersects himself or collides with barrier and update gameOver variable.
  */
 function checkDeath() {
+  console.log(barrierSegment);
   gameOver =
     outsideGrid(getSnakeHead()) ||
     snakeIntersection() ||
@@ -194,6 +197,14 @@ function disablePaintMode() {
 }
 
 function paint(cell) {
-  cell.classList.add("barrier");
   cell.dataset.fill = "barrier";
+  const x = Number(cell.dataset.x)
+  const y = Number(cell.dataset.y)
+  barrierSegment.push({ x, y})
+}
+
+function clearGrid() {
+  cells.forEach( cell => {
+    cell.dataset.fill = "empty";
+  })
 }

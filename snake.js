@@ -28,11 +28,8 @@ export function updateSnake() {
  */
 export function drawSnake(gameBoard) {
   snakeBody.forEach((segment) => {
-    const snakeElement = document.createElement("div");
-    snakeElement.style.gridColumnStart = segment.x;
-    snakeElement.style.gridRowStart = segment.y;
-    snakeElement.classList.add("snake");
-    gameBoard.appendChild(snakeElement);
+    const snakeElement = gameBoard.querySelector(`[data-x='${segment.x}'][data-y='${segment.y}']`);
+    snakeElement.dataset.fill = "snake";
   });
 }
 

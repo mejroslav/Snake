@@ -8,7 +8,7 @@ import {
 import { randomGridPosition } from "./grid.js";
 
 let food = getRandomFoodPosition();
-let barrierSegment = [];
+export let barrierSegment = [];
 let barrierCreatorNumber = 0;
 export let gameScore = 0;
 const EXPANSION_RATE = 1;
@@ -56,11 +56,8 @@ export function updateStatistics() {
  * Draw a new square with food.
  */
 export function drawFood(gameBoard) {
-  const foodElement = document.createElement("div");
-  foodElement.style.gridColumnStart = food.x;
-  foodElement.style.gridRowStart = food.y;
-  foodElement.classList.add("food");
-  gameBoard.appendChild(foodElement);
+  const foodElement = document.querySelector(`[data-x='${food.x}'][data-y='${food.y}']`);
+  foodElement.dataset.fill = "food";
 }
 
 /**
@@ -68,11 +65,8 @@ export function drawFood(gameBoard) {
  */
 export function drawBarrier(gameBoard) {
   barrierSegment.forEach((segment) => {
-    const barrierElement = document.createElement("div");
-    barrierElement.style.gridColumnStart = segment.x;
-    barrierElement.style.gridRowStart = segment.y;
-    barrierElement.classList.add("barrier");
-    gameBoard.appendChild(barrierElement);
+    const barrierElement = document.querySelector(`[data-x='${segment.x}'][data-y='${segment.y}']`);
+    barrierElement.dataset.fill = "barrier";
   });
 }
 
