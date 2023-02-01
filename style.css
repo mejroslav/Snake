@@ -115,7 +115,7 @@ button {
 
 #game-board {
   flex-shrink: 0;
-  background-color: #ccc;
+  background-color: hsl(0, 0%, 80%);
   width: 100vmin;
   height: 100vmin;
 
@@ -123,6 +123,10 @@ button {
   /* vygeneruje 21x21 mřížku o 1framu */
   grid-template-rows: repeat(21, 1fr);
   grid-template-columns: repeat(21, 1fr);
+}
+
+#game-board.paint-mode{
+  background-color: hsl(0, 0%, 50%);
 }
 
 [data-fill='snake'] {

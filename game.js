@@ -179,6 +179,8 @@ function generateGrid(parentElement, number) {
 
 function enablePaintMode() {
   paintModeActive = true;
+  gameBoard.classList.add("paint-mode")
+
     cells.forEach((cell) => {
       cell.addEventListener("click", () => {
         if (paintModeActive) paint(cell);
@@ -191,16 +193,19 @@ function enablePaintMode() {
 
 function disablePaintMode() {
   paintModeActive = false;
+  gameBoard.classList.remove("paint-mode")
 
   paintModeButtonElement.classList.remove("hide");
   gameModeButtonElement.classList.add("hide");
 }
 
 function paint(cell) {
-  cell.dataset.fill = "barrier";
-  const x = Number(cell.dataset.x)
-  const y = Number(cell.dataset.y)
-  barrierSegment.push({ x, y})
+  if (cell.dataset.fill === "empty") {
+    cell.dataset.fill = "barrier";
+    const x = Number(cell.dataset.x)
+    const y = Number(cell.dataset.y)
+    barrierSegment.push({ x, y})
+  }
 }
 
 function clearGrid() {
