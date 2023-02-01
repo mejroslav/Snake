@@ -7,8 +7,9 @@ import {
 } from "./snake.js";
 import { randomGridPosition } from "./grid.js";
 
-let food = getRandomFoodPosition();
 export let barrierSegment = [];
+
+let food = getRandomFoodPosition();
 let barrierCreatorNumber = 0;
 export let gameScore = 0;
 const EXPANSION_RATE = 1;
@@ -73,7 +74,7 @@ export function drawBarrier(gameBoard) {
  */
 function getRandomFoodPosition() {
   let newFoodPosition;
-  while (newFoodPosition == null || onSnake(newFoodPosition)) {
+  while (newFoodPosition == null || onSnake(newFoodPosition) || barrierCollision(newFoodPosition)) {
     newFoodPosition = randomGridPosition();
   }
   return newFoodPosition;
