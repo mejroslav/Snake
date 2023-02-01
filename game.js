@@ -48,11 +48,19 @@ function main() {
   window.addEventListener("keydown", (e) => {
     switch (e.key) {
       case "Enter":
-        if (!gameStarted) startNewGame();
+        if (!gameStarted) {
+          startNewGame();
+          return
+        };
+        if (gameActive) pauseGame();
         else continueGame();
         break;
       case "Escape":
-        pauseGame();
+        if (!gameStarted) {
+          return
+        };
+        if (gameActive) pauseGame();
+        else continueGame();
         break;
     }
   });
